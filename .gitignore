@@ -1,0 +1,4 @@
+/.myvenv
+/punkt/
+/.dist
+.DS_Store

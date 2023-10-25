@@ -1,0 +1,23 @@
+# Python dependencies required for development
+astunparse
+numpy
+psutil
+pyyaml
+requests
+setuptools
+types-dataclasses
+typing-extensions
+sympy
+filelock
+networkx
+setuptools ; python_version >= "3.12"
+packaging
+accelerate
+transformers
+bs4
+sentence-transformers
+nltk
+docker
+langchain
+pyepsilla
+streamlit
