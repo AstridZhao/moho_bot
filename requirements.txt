@@ -18,6 +18,6 @@ bs4
 sentence-transformers
 nltk
 docker
-langchain
+langchain --upgrade
 pyepsilla
 streamlit
