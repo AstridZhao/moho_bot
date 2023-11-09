@@ -153,67 +153,58 @@ if question := st.chat_input():
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,text=True)
     
     start_time = time.time()
-    # Function to read from a stream and put the output in a queue
-    def enqueue_output(stream, queue):
-        for line in iter(stream.readline, b''):
-            queue.put(line)
-        stream.close()
     
-    # Create queues to hold the output
-    stdout_queue = queue.Queue()
-    stdout_thread = threading.Thread(target=enqueue_output, args=(process.stdout, stdout_queue))
-    stdout_thread.start()
+    # # Function to read from a stream and put the output in a queue
+    # def enqueue_output(stream, queue):
+    #     output = iter(stream.read, b'')
+    #     queue.put(output)
+    #     stream.close()
     
-    # Read from the queues
-    while True:
-        try:
-            # Try to get output from the queues
-            stdout_line = stdout_queue.get_nowait()
-            print(stdout_line)
-            st.session_state.messages.append([{"role":"assistant", "content": stdout_line}])
-            st.chat_message("assistant").write(stdout_line)
-                    # output = process.stdout.read()
+    # # Create queues to hold the output
+    # stdout_queue = queue.Queue()
+    # stdout_thread = threading.Thread(target=enqueue_output, args=(process.stdout, stdout_queue))
+    # stdout_thread.start()
+    
+    # # Read from the queues
+    # while True:
+    #     try:
+    #         # Try to get output from the queues
+    #         stdout_line = stdout_queue.get_nowait()
+    #         print(stdout_line)
+    #         st.session_state.messages.append([{"role":"assistant", "content": stdout_line}])
+    #         st.chat_message("assistant").write(stdout_line)
+    #                 # output = process.stdout.read()
             
-        except queue.Empty:
-        # No output ready
-            pass
+    #     except queue.Empty:
+    #     # No output ready
+    #         pass
 
-    # Process the output here
+    # # Process the output here
 
-        # Check if the subprocess is still running
-        if process.poll() is not None:
-            break
+    #     # Check if the subprocess is still running
+    #     if process.poll() is not None:
+    #         break
 
-    # Make sure threads have finished
-    stdout_thread.join()
+    # # Make sure threads have finished
+    # stdout_thread.join()
 
-    process.stdout.close()
+    # process.stdout.close()
         
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    print("total time :",  elapsed_time)
-    
-    # # output = process.stdout.read()
     # end_time = time.time()
     # elapsed_time = end_time - start_time
     # print("total time :",  elapsed_time)
-
-    # marker_index = output.find("[/INST]")
-    # if marker_index != -1:
-    #     assistant_response = output[marker_index + len("[/INST]"):] 
-    #     st.session_state.messages.append([{"role":"assistant", "content": assistant_response}])
-    #     st.chat_message("assistant").write(assistant_response)
     
-  
-        # if process.poll() is not None and output == '':
-        #     print("Subprocess has completed.")
-        #     break 
-        # if output:
-        #     assistant_response = output.strip()
-        #     st.session_state.messages.append([{"role":"assistant", "content": assistant_response}])
-        #     st.chat_message("assistant").write(assistant_response)
+    output = process.stdout.read()
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print("total time :",  elapsed_time)
 
-
+    marker_index = output.find("[/INST]")
+    if marker_index != -1:
+        assistant_response = output[marker_index + len("[/INST]"):] 
+        st.session_state.messages.append([{"role":"assistant", "content": assistant_response}])
+        st.chat_message("assistant").write(assistant_response)
+    
 
 
 
