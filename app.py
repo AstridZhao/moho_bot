@@ -75,7 +75,7 @@ if question := st.chat_input():
     
     # print(prompt)
     # WaitReview: call model
-    os.chdir('/Users/astridz/Documents/llama.cpp')
+    os.chdir('/Users/chenluwang/Documents/llama.cpp')
    # command = f"./main -m {pure_name} -c 1024 -ngl 48 -p '{prompt}'"
     # ./main -m llama-2-7b-chat.Q4_K_M.gguf -c 1024 -ngl 48 -p
     command = ['./main', '-m', pure_name, '-c', '2048', '-ngl', '48', '-p', prompt]
