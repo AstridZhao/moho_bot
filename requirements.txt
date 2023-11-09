@@ -18,6 +18,16 @@ bs4
 sentence-transformers
 nltk
 docker
-langchain --upgrade
+langchain 
 pyepsilla
 streamlit
+bitsandbytes 
+accelerate 
+transformers
+datasets 
+loralib 
+sentencepiece
+pypdf
+sentence_transformers
+unstructured
+faiss-cpu

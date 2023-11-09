@@ -570,7 +570,7 @@ COMSC-100  Computing and the Digital World
 Spring. Credits: 4
 
 
-An introduction to basic computer science concepts. Lectures will cover topics such as the origins of computing, computer architecture, artificial intelligence, and privacy and security. There will be some programming exercises.Applies to requirement(s): Math  SciencesH. Pon-BarryAdvisory: No prior study of computer science is expected. Students may not take this course after Computer Science 106, 150, or 151.Notes: Course does not count toward the Computer Science major or minor.
+An introduction to basic computer science concepts. Lectures will cover topics such as the origins of computing, computer architecture, artificial intelligence, and privacy and security. There will be some programming exercises.Applies to requirement(s): Math  SciencesH. Pon-Barry, D. RaiAdvisory: No prior study of computer science is expected. Students may not take this course after Computer Science 106, 150, or 151.Notes: Course does not count toward the Computer Science major or minor.
 COMSC-106  Fundamentals of Applied Computing
 Not Scheduled for This Year. Credits: 4
 
@@ -695,7 +695,7 @@ COMSC-243HC  Topic: 'Human-Computer Interaction'
 Spring. Credits: 4
 
 
-Human-computer interaction (HCI) is a multidisciplinary field exploring the relationships between people and computers. This broad area includes the study of topics such as how people interact with technology, how design impacts what people do with technology, and methodologies for designing new techologies that really works for people. In this class, students will learn about and apply human-centered design principles, employ common research methods in the field, and explore recent literature in the field.Applies to requirement(s): Math  SciencesA. BurnsPrereq: COMSC-205 (may take concurrently). Prereq: COMSC-205 (may take concurrently).
+Human-computer interaction (HCI) is a multidisciplinary field exploring the relationships between people and computers. This broad area includes the study of topics such as how people interact with technology, how design impacts what people do with technology, and methodologies for designing new technologies that really works for people. In this class, students will learn about and apply human-centered design principles, employ common research methods in the field, and explore recent literature in the field.Applies to requirement(s): Math  SciencesA. BurnsPrereq: COMSC-205 (may take concurrently). Prereq: COMSC-205 (may take concurrently).
 COMSC-243HR  Topic: 'Human-Robot Interaction'
 Fall. Credits: 4
 
