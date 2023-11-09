@@ -1,78 +1,94 @@
-# extract all URLs from a webpage
-
-inputLink = """
-1. https://www.mtholyoke.edu/#main-menu
-2. https://www.mtholyoke.edu/#main-content
-3. https://www.mtholyoke.edu/
-4. https://www.mtholyoke.edu/directory
-5. https://www.mtholyoke.edu/news
-6. https://athletics.mtholyoke.edu/
-7. https://events.mtholyoke.edu/
-8. https://www.mtholyoke.edu/current-students
-9. https://www.mtholyoke.edu/alums
-10. https://www.mtholyoke.edu/parents-families
-11. https://www.mtholyoke.edu/faculty
-12. https://www.mtholyoke.edu/staff
-13. https://www.mtholyoke.edu/five-college-students
-14. https://www.mtholyoke.edu/new-students
-15. https://securelb.imodules.com/s/1660/adv/index.aspx?sid=1660&gid=2&pgid=603&cid=1307&appealcode=wb&_ga=2.106669194.822974366.1636484617-87937533.1576766980
-16. https://www.mtholyoke.edu/academics
-17. https://www.mtholyoke.edu/academics/find-your-program
-18. https://www.mtholyoke.edu/academics/stem-liberal-arts-context
-19. https://www.mtholyoke.edu/academics/arts-mount-holyoke
-20. https://www.mtholyoke.edu/academics/enhance-your-learning
-21. https://www.mtholyoke.edu/academics/international-learning
-22. https://www.mtholyoke.edu/academics/after-mount-holyoke
-23. https://www.mtholyoke.edu/academics/centers-and-facilities
-24. https://www.mtholyoke.edu/academics/academic-support
-25. https://www.mtholyoke.edu/academics/faculty-mentorship
-26. https://www.mtholyoke.edu/academics/research-excellence-and-opportunity
-27. https://www.mtholyoke.edu/academics/degrees-and-graduation-requirements
-28. https://www.mtholyoke.edu/academics/faculty-publications-grants-awards
-29. https://www.mtholyoke.edu/admission
-30. https://www.mtholyoke.edu/admission/apply-undergraduate-first-year
-31. https://www.mtholyoke.edu/admission/apply-graduate-student
-32. https://www.mtholyoke.edu/admission/visiting-or-connecting-mount-holyoke
-33. https://www.mtholyoke.edu/admission/inclusion
-34. https://www.mtholyoke.edu/student-experience
-35. https://www.mtholyoke.edu/student-experience/living-campus
-36. https://www.mtholyoke.edu/student-experience/campus-experience
-37. https://www.mtholyoke.edu/student-experience/community-and-belonging
-38. https://www.mtholyoke.edu/student-experience/beyond-campus
-39. https://mtholyoke.prestosports.com/
-40. https://www.mtholyoke.edu/why-mount-holyoke
-41. https://www.mtholyoke.edu/why-mount-holyoke/alum-network-and-support
-42. https://www.mtholyoke.edu/why-mount-holyoke/glance
-43. https://www.mtholyoke.edu/why-mount-holyoke/diversity-equity-and-inclusion
-44. https://www.mtholyoke.edu/why-mount-holyoke/mission-and-administration
-45. https://www.mtholyoke.edu/why-mount-holyoke/sustainability
-46. https://www.mtholyoke.edu/why-mount-holyoke/we-are-mount-holyoke
-47. https://www.mtholyoke.edu/why-mount-holyoke/why-womens-college
-48. https://www.mtholyoke.edu/#fancybox-id-131
-49. https://www.mtholyoke.edu/#fancybox-id-132
-50. https://www.mtholyoke.edu/academics/after-mount-holyoke/alums-leading-way
-51. https://www.mtholyoke.edu/#fancybox-id-136
-52. https://www.mtholyoke.edu/#fancybox-id-137
-53. https://www.mtholyoke.edu/academics/find-your-program?program_level=1
-54. https://www.mtholyoke.edu/admission/apply-undergraduate-first-year/application-process
-55. https://www.mtholyoke.edu/#fancybox-id-52
-56. https://www.mtholyoke.edu/academics/find-your-program?program_level=2
-57. https://www.mtholyoke.edu/admission/professional-non-degree
-58. https://www.mtholyoke.edu/#fancybox-id-53
-59. https://www.mtholyoke.edu/why-mount-holyoke/we-are-mount-holyoke
-60. https://www.mtholyoke.edu/why-mount-holyoke/why-womens-college
-61. https://www.mtholyoke.edu/why-mount-holyoke/alum-network-and-support
-62. https://www.mtholyoke.edu/news/news-stories/forging-bonds-start-through-shirley-chisholm-living-learning-community
-63. https://www.mtholyoke.edu/news/news-stories?topic%5B0%5D=176
-64. https://www.mtholyoke.edu/news/news-stories/blending-passions-both-gender-studies-and-art-mount-holyoke
-65. https://www.mtholyoke.edu/news/news-stories?topic%5B0%5D=175
-66. https://www.mtholyoke.edu/news/news-stories/flexing-creative-muscles-new-ways
-67. https://www.mtholyoke.edu/news/news-stories/achieving-two-goals-mount-holyoke-working-research-lab-and-studying-abroad
-68. https://www.mtholyoke.edu/news/news-stories/feeling-empowered-organize-mock-trial-team-mount-holyoke
-69. https://www.mtholyoke.edu/news/news-stories?type=4
-70. https://www.mtholyoke.edu/why-mount-holyoke/glance
-71. https://www.mtholyoke.edu/news/news-stories?type=3&topic%5B181%5D=181&topic%5B184%5D=184
-72. https://www.mtholyoke.edu/academics/find-your-program
-73. https://www.mtholyoke.edu/why-mount-holyoke/glance/factbook/geographic-diversity
-74. https://www.mtholyoke.edu/academics/enhance-your-learning/career-focused-curriculum-lynk
-75. https://embark.mtholyoke.edu/club_signup?group"""
+https://www.mtholyoke.edu/academics/find-your-program/africana-studies
+https://www.mtholyoke.edu/academics/find-your-program/ancient-studies
+https://www.mtholyoke.edu/academics/find-your-program/anthropology
+https://www.mtholyoke.edu/academics/find-your-program/arabic
+https://www.mtholyoke.edu/academics/find-your-program/architectural-studies
+https://www.mtholyoke.edu/academics/find-your-program/art-history
+https://www.mtholyoke.edu/academics/find-your-program/art-studio
+https://www.mtholyoke.edu/academics/find-your-program/asian-studies
+https://www.fivecolleges.edu/academics/asianpacificamerican-studies
+https://www.mtholyoke.edu/academics/find-your-program/astronomy
+https://www.mtholyoke.edu/academics/find-your-program/beckman-scholars-program
+https://www.mtholyoke.edu/academics/find-your-program/biochemistry
+https://www.mtholyoke.edu/academics/find-your-program/biological-sciences
+https://www.fivecolleges.edu/academics/biomathematical-sciences
+https://www.fivecolleges.edu/academics/buddhist-studies
+https://www.mtholyoke.edu/academics/find-your-program/careers-public-service
+https://www.mtholyoke.edu/academics/find-your-program/chemistry
+https://www.mtholyoke.edu/academics/find-your-program/chinese
+https://www.mtholyoke.edu/academics/find-your-program/classics
+https://www.fivecolleges.edu/academics/coastal-and-marine-sciences
+https://www.fivecolleges.edu/academics/cognitive-neuroscience
+https://www.mtholyoke.edu/academics/find-your-program/computer-science
+https://www.mtholyoke.edu/academics/find-your-program/critical-race-and-political-economy
+https://www.mtholyoke.edu/academics/find-your-program/critical-social-thought
+http://www.fivecolleges.edu/chs/
+https://www.mtholyoke.edu/academics/find-your-program/dance
+https://www.mtholyoke.edu/academics/find-your-program/data-analytics-and-society
+https://www.mtholyoke.edu/academics/find-your-program/data-science
+https://www.mtholyoke.edu/academics/find-your-program/development-studies
+https://www.mtholyoke.edu/academics/find-your-program/dual-degree-engineering-programs
+https://www.mtholyoke.edu/academics/find-your-program/east-asian-studies
+https://www.mtholyoke.edu/academics/find-your-program/economics
+https://www.mtholyoke.edu/academics/find-your-program/psychology-and-education
+https://www.mtholyoke.edu/academics/find-your-program/educational-policy-and-practice
+https://www.mtholyoke.edu/academics/find-your-program/educational-studies
+https://www.mtholyoke.edu/academics/find-your-program/engineering
+https://www.mtholyoke.edu/academics/find-your-program/english
+https://www.mtholyoke.edu/academics/find-your-program/entrepreneurship-organizations-and-society
+https://www.mtholyoke.edu/academics/find-your-program/environmental-studies
+https://www.fivecolleges.edu/academics/ethnomusicology
+https://www.mtholyoke.edu/academics/find-your-program/film-media-theater
+https://www.mtholyoke.edu/academics/find-your-program/french
+https://www.mtholyoke.edu/academics/find-your-program/gender-studies
+https://www.mtholyoke.edu/academics/find-your-program/geography
+https://www.mtholyoke.edu/academics/find-your-program/geology
+https://www.mtholyoke.edu/academics/find-your-program/german-studies
+https://www.mtholyoke.edu/academics/find-your-program/global-business
+https://www.mtholyoke.edu/academics/find-your-program/greek
+https://www.mtholyoke.edu/academics/find-your-program/history
+https://www.mtholyoke.edu/academics/find-your-program/international-relations
+https://www.mtholyoke.edu/academics/find-your-program/italian-studies
+https://www.mtholyoke.edu/academics/find-your-program/japanese
+https://www.mtholyoke.edu/academics/find-your-program/jewish-studies
+https://www.mtholyoke.edu/academics/find-your-program/joint-bama-program-geneva
+https://www.mtholyoke.edu/academics/find-your-program/joint-bams-materials-science-and-engineering
+https://www.mtholyoke.edu/academics/find-your-program/journalism-media-and-public-discourse
+https://www.mtholyoke.edu/academics/find-your-program/korean
+https://www.mtholyoke.edu/academics/find-your-program/latin
+https://www.mtholyoke.edu/academics/find-your-program/latin-american-studies
+https://www.fivecolleges.edu/academics/latin-american-caribbean-and-latinoa-studies
+https://www.mtholyoke.edu/academics/find-your-program/latinx-studies
+https://www.mtholyoke.edu/academics/find-your-program/law-public-policy-and-human-rights
+https://www.fivecolleges.edu/academics/logic-program
+https://www.mtholyoke.edu/academics/find-your-program/mathematics
+https://www.mtholyoke.edu/academics/find-your-program/mhc-semester-dc
+https://www.mtholyoke.edu/academics/find-your-program/middle-eastern-studies
+https://www.mtholyoke.edu/node/6532
+https://www.mtholyoke.edu/academics/find-your-program/museums-archives-and-public-history
+https://www.mtholyoke.edu/academics/find-your-program/music
+https://www.fivecolleges.edu/academics/native-american-and-indigenous-studies
+https://www.mtholyoke.edu/academics/find-your-program/neuroscience-and-behavior
+https://www.mtholyoke.edu/academics/find-your-program/nonprofit-organizations
+https://www.mtholyoke.edu/academics/find-your-program/philosophy
+https://www.mtholyoke.edu/academics/find-your-program/physical-education-and-athletics
+https://www.mtholyoke.edu/academics/find-your-program/physics
+https://www.mtholyoke.edu/academics/find-your-program/politics
+https://www.mtholyoke.edu/academics/find-your-program/pre-health
+https://www.mtholyoke.edu/academics/find-your-program/pre-law
+https://www.mtholyoke.edu/academics/find-your-program/psychology
+https://www.mtholyoke.edu/academics/find-your-program/psychology-and-education
+https://www.fivecolleges.edu/academics/queer-trans-and-sexuality-studies
+https://www.mtholyoke.edu/academics/find-your-program/religion
+https://www.fivecolleges.edu/academics/reproductive-health-rights-justice
+https://www.mtholyoke.edu/academics/find-your-program/restoration-ecology
+https://www.mtholyoke.edu/academics/find-your-program/romance-languages-and-cultures
+https://www.mtholyoke.edu/academics/find-your-program/russian-and-eurasian-studies
+https://www.fivecolleges.edu/academics/russian-east-european-and-eurasian-studies-reees
+https://www.mtholyoke.edu/academics/find-your-program/sociology
+https://www.mtholyoke.edu/academics/find-your-program/south-asian-studies
+https://www.mtholyoke.edu/academics/find-your-program/spanish
+https://www.mtholyoke.edu/academics/find-your-program/special-self-designed-major
+https://www.mtholyoke.edu/academics/find-your-program/statistics
+https://www.fivecolleges.edu/academics/sustainability-studies-program
+https://www.mtholyoke.edu/academics/find-your-program/teacher-licensure

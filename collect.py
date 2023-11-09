@@ -80,14 +80,17 @@ def text_from_html(body):
     visible_texts = filter(tag_visible, texts)  
     return u" ".join(t.strip() for t in visible_texts)
 
-html = urllib.request.urlopen('https://www.mtholyoke.edu/academics/find-your-program/anthropology').read()
-print(text_from_html(html))
+
+        
+URLs = reading("URL.txt")
+URLList = URLs.split()
 
 if (os.getcwd() != "/Users/astridz/Documents/Moho_Bot/Documents_collection"):
-    os.chdir('Documents_collection')
-    
-writing(text_from_html(html), f"page2.txt")
-    
-os.chdir('../')
+        os.chdir('Documents_collection')
+for link in URLList:
+    pure_name = link.split('/')[-1]
+    html = urllib.request.urlopen(link).read()
+    writing(text_from_html(html), f"{pure_name}.txt")
+
 
 
