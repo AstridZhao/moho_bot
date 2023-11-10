@@ -80,8 +80,6 @@ def text_from_html(body):
     visible_texts = filter(tag_visible, texts)  
     return u" ".join(t.strip() for t in visible_texts)
 
-
-        
 URLs = reading("URL.txt")
 URLList = URLs.split()
 
@@ -90,7 +88,10 @@ if (os.getcwd() != "/Users/astridz/Documents/Moho_Bot/Documents_collection"):
 for link in URLList:
     pure_name = link.split('/')[-1]
     html = urllib.request.urlopen(link).read()
-    writing(text_from_html(html), f"{pure_name}.txt")
+    document = text_from_html(html)
+    document_tokenize = " ".join(nltk.sent_tokenize(document))
+    
+    writing(document_tokenize, f"{pure_name}.txt")
 
 
 

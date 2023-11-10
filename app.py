@@ -148,12 +148,24 @@ if question := st.chat_input():
 
     # ./main -m llama-2-7b-chat.Q4_K_M.gguf -c 1024 -b 16 -ngl 48 -p
     pure_name = "llama-2-7b-chat.Q4_K_M.gguf"
-    command = ['./main', '-m', pure_name, '-c', '2048', '--keep', '0', '-b', '256', '-ngl', '48', '-p', prompt_template]
+    command = ['./main', '-m', pure_name, '-c', '2048', '--keep', '0', '-b', '1024', '-ngl', '48', '-p', prompt_template]
  
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,text=True)
     
     start_time = time.time()
+        
+    output = process.stdout.read()
+
+    marker_index = output.find("[/INST]")
+    if marker_index != -1:
+        assistant_response = output[marker_index + len("[/INST]"):] 
+        st.session_state.messages.append([{"role":"assistant", "content": assistant_response}])
+        st.chat_message("assistant").write(assistant_response)
     
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print("total time :",  elapsed_time)
+
     # # Function to read from a stream and put the output in a queue
     # def enqueue_output(stream, queue):
     #     output = iter(stream.read, b'')
@@ -193,18 +205,6 @@ if question := st.chat_input():
     # end_time = time.time()
     # elapsed_time = end_time - start_time
     # print("total time :",  elapsed_time)
-    
-    output = process.stdout.read()
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    print("total time :",  elapsed_time)
-
-    marker_index = output.find("[/INST]")
-    if marker_index != -1:
-        assistant_response = output[marker_index + len("[/INST]"):] 
-        st.session_state.messages.append([{"role":"assistant", "content": assistant_response}])
-        st.chat_message("assistant").write(assistant_response)
-    
 
 
 
