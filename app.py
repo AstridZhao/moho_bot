@@ -12,7 +12,7 @@ import time, queue
 
 import subprocess, os
 from langchain.vectorstores import Epsilla
-
+from langchain.prompts import PromptTemplate
 # start docker ->---------------->---------------->---------------
 # if (os.getcwd() != "/Users/astridz"):
 #     os.chdir('/Users/astridz')
@@ -118,8 +118,10 @@ def print_dialog():
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.write(message["content"])
-
-SYSTEM_PROMPT = f'''You are a helpful question answer assistant. Answer the user question followed the rules:1. Do not copy the context in your answer. Try to understand the Context and rephrase them. 2. Please don't make things up or say things not mentioned in the Context. 3. You can trust the context. 4. Give a short response! Your answer should be in 200 words. The context is: "'''
+    
+    
+SYSTEM_PROMPT = '''You are a helpful question answer assistant. Answer the user question followed the rules:1. Do not copy the context in your answer. Try to understand the Context and rephrase them. 2. Please don't make things up or say things not mentioned in the Context. 3. You can trust the context. 4. Give a short response! Your answer should be in 200 words. The context is: '''
+# template = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
 
 #store message 
 if "messages" not in st.session_state.keys():
@@ -128,39 +130,55 @@ if "messages" not in st.session_state.keys():
     st.chat_message("assistant").write("I am a helpful question answer assistant. How can I help you?")
 
 if question := st.chat_input():
+    question = question.strip()
     st.session_state.messages.append({"role": "user", "content": question})
     print_dialog()
-    # https://github.com/epsilla-cloud/app-gallery/blob/main/local-chatbot/app.py
-    #https://medium.com/@anoopjohny2000/building-a-conversational-chat-interface-with-streamlit-and-langchain-for-csvs-8c150b1f982d?source=read_next_recirc-----a5053b16f85----2---------------------81756fa8_2a08_42cb_bb9e_43cd23b2ae3a-------
-
     #vector_store.similarity_search
     context = ''.join(map(lambda doc: doc.page_content, vector_store.similarity_search(question, k = 2)))
     
     #Testing:
-    print(context)
-    
-    prompt_template = f'''[INST]<<SYS>>\n{SYSTEM_PROMPT}{context}\n<</SYS>>\n\n{question}[/INST]'''
-    # prompt_template = f'''{SYSTEM_PROMPT}{context} USER: {question} ASSISTANT: 
+    prompt_template = f'''<s>[INST]<<SYS>>\n{SYSTEM_PROMPT}{context}\n<</SYS>>\n\n{question}[/INST]'''
+    # prompt_template = f'''{SYSTEM_PROMPT}{context} The user question is: {question}'''
 
     # Start the subprocess and the threading to handle its output
     if (os.getcwd() != '/Users/astridz/Documents/llama.cpp'):
         os.chdir('/Users/astridz/Documents/llama.cpp')
 
-    # ./main -m llama-2-7b-chat.Q4_K_M.gguf -c 1024 -b 16 -ngl 48 -p
+    # prompt_template = f'''<s>[INST]<<SYS>>\n
+    # {SYSTEM_PROMPT}{context}\n
+    # <</SYS>>\n\n
+    # {question}[/INST]'''
+    
+    # prompt_template = f'''./main -m llama-2-7b-chat.Q4_K_M.gguf -c 1024 --verbose-prompt --keep 0 -b 16 -ngl 48 --prompt '{SYSTEM_PROMPT}{context} USER: {question}' --in-suffix 'ASSISTANT:' '''
+    
+    # ./main -m llama-2-7b-chat.Q4_K_M.gguf -c 1024 --verbose-prompt --keep 0 -b 16 -ngl 48 -p
     pure_name = "llama-2-7b-chat.Q4_K_M.gguf"
     command = ['./main', '-m', pure_name, '-c', '2048', '--keep', '0', '-b', '1024', '-ngl', '48', '-p', prompt_template]
- 
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,text=True)
-    
     start_time = time.time()
-        
     output = process.stdout.read()
-
     marker_index = output.find("[/INST]")
+    prompt_tokens = []
+
     if marker_index != -1:
         assistant_response = output[marker_index + len("[/INST]"):] 
-        st.session_state.messages.append([{"role":"assistant", "content": assistant_response}])
+        st.session_state.messages.append([{"role":"assistant", "content": f'''{assistant_response}'''}] )
         st.chat_message("assistant").write(assistant_response)
+    # else:
+    #     st.session_state.messages.append([{"role":"assistant", "content": f'''{output}</s><s>[INST]'''}] )
+    #     st.chat_message("assistant").write(output)
+        
+    # while True:
+    #     output = process.stdout.readline()
+        # print(output)
+    #     if process.poll() is not None and output == '':
+    #         print("Subprocess has completed.")
+    #         break 
+    #     if 'You are a helpful question answer' in output:
+    #         continue
+    # assistant_response = f"{output.strip()}"
+    # st.session_state.messages.append([{"role":"assistant", "content": f'''{assistant_response}'''}] )
+    # st.chat_message("assistant").write(assistant_response)
     
     end_time = time.time()
     elapsed_time = end_time - start_time
