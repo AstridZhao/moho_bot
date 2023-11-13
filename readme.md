@@ -105,7 +105,9 @@ docker run --pull=always -d -p 8888:8888 epsilla/vectordb
 ## Program function
 
 * To extract text from website, use [collect.py].
+  
 * To add dataset, use [learn.py].
+  
 * To run chatbot, use [app.py].
 
 **Before running app.py, I suggest the following code in the terminal first to avoid the unexpected error.**
