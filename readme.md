@@ -100,7 +100,9 @@ docker run --pull=always -d -p 8888:8888 epsilla/vectordb
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- Usage -->
+<!-- USAGE -->
+
+## Program function
 To extract text from website, use [collect.py].
 To add dataset, use [learn.py].
 To run chatbot, use [app.py].
