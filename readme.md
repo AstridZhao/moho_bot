@@ -82,7 +82,10 @@ cd llama.cpp
 ./main -m llama-2-7b-chat.Q4_K_M.gguf -c 1024 -ngl 48 -p "Where is new york?"
 ```
 
-### Install Docker
+### Install Docker Desktop
+
+Docker Desktop is a one-click-install application for your Mac, Linux, or Windows environment that lets you to build, share, and run containerized applications and microservices. Docker packages software into standardized units called containers that have everything the software needs to run including libraries, system tools, code, and runtime.
+
 You find the link to install docker [here](https://docs.docker.com/desktop/install/mac-install/).
 I suggest to install docker to "/Users/{username}" directory.
 
@@ -96,5 +99,22 @@ docker run --pull=always -d -p 8888:8888 epsilla/vectordb
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- Usage -->
+To extract text from website, use [collect.py].
+To add dataset, use [learn.py].
+To run chatbot, use [app.py].
+
+Before running app.py, I suggest the following code in the terminal first to avoid the unexpected error.
+
+```zsh
+cd /Users/{username}
+open -a Docker
+docker pull epsilla/vectordb
+docker run --pull=always -d -p 8888:8888 epsilla/vectordb
+cd /Users/{username}/.../moho_bot
+python3 learn.py
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
