@@ -25,9 +25,10 @@ This project is for the llama2 chatbot built specifically for Mount Holyoke Coll
 
 ### Built With
 * [![Python][python.org]][Python-url]
-* [![JupyterLab][https://jupyterlab.readthedocs.io/en/latest/#]][Jupyter-url]
+* [![JupyterLab][https://jupyterlab.readthedocs.io/en/latest/#]][JupyterLab-url]
 * [![Llama.cpp][https://github.com/ggerganov/llama.cpp]][llamacpp-url]
-* [![Streamlit][streamlit.io]][streamlit-url]
+* [![Streamlit][streamlit.io]][Streamlit-url]
+* [![Next][Next.js]][Next-url]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -45,7 +46,7 @@ bash Miniforge3-MacOSX-arm64.sh
 ```
 ### Llama.cpp
 The main goal of llama.cpp is to run the LLaMA model using 4-bit integer quantization on a MacBook. The instructions below are for Macs with an **M1 chip**.
-For other operating systems, comment out those cells and get instructions [here][https://github.com/TrelisResearch/llamacpp-install-basics/blob/main/instructions.md].
+For other operating systems, comment out those cells and get instructions [here](https://github.com/TrelisResearch/llamacpp-install-basics/blob/main/instructions.md).
 
 
 
