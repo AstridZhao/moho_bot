@@ -31,12 +31,14 @@ This project is for the llama2 chatbot built specifically for Mount Holyoke Coll
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- GETTING STARTED -->
 ## Prerequisite
 
 ### Python library packages
-
+To have all packages to run the code, you can run the below code in the terminal with the main program directory:
+```zsh
+pip install -r requirements.txt
+```
 ### Architecture
 If you are using Apple Silicon (M1) Mac, make sure you have installed a version of Python that supports arm64 architecture; Otherwise, while installing it will build the llama.ccp x86 version which will be 10x slower on Apple Silicon (M1) Mac. To install arm64 architecture on your laptop, run the following code on your laptop:
 ```zsh
@@ -48,8 +50,12 @@ bash Miniforge3-MacOSX-arm64.sh
 The main goal of llama.cpp is to run the LLaMA model using 4-bit integer quantization on a MacBook. The instructions below are for Macs with an **M1 chip**.
 For other operating systems, comment out those cells and get instructions [here](https://github.com/TrelisResearch/llamacpp-install-basics/blob/main/instructions.md).
 
-
-
+```jupyterlab
+git clone https://github.com/ggerganov/llama.cpp
+%cd llama.cpp
+LLAMA_METAL=1 make
+%cd ../
+```
 
 
 
