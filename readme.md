@@ -110,7 +110,7 @@ docker run --pull=always -d -p 8888:8888 epsilla/vectordb
   
 * To run chatbot, use [app.py].
 
-**Before running app.py, I suggest the following code in the terminal first to avoid the unexpected error.**
+**Before running app.py, I suggest you run the following code in the terminal to avoid unexpected errors.**
 
 ```zsh
 cd /Users/{username}
@@ -119,6 +119,11 @@ docker pull epsilla/vectordb
 docker run --pull=always -d -p 8888:8888 epsilla/vectordb
 cd /Users/{username}/.../moho_bot
 python3 learn.py
+```
+
+then, you can run the chatbot by 
+```zsh
+python3 app.py
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
