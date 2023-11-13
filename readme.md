@@ -24,6 +24,8 @@
 This project is for the llama2 chatbot built specifically for Mount Holyoke College information. 
 
 ### Built With
+* ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+* ![JupyterLab](https://img.shields.io/badge/JupyterLab-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white)
 * [![Python][python.org]][Python-url]
 * [![JupyterLab][https://jupyterlab.readthedocs.io/en/latest/#]][JupyterLab-url]
 * [![Llama.cpp][https://github.com/ggerganov/llama.cpp]][llamacpp-url]
