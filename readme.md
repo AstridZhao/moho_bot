@@ -26,11 +26,9 @@ This project is for the llama2 chatbot built specifically for Mount Holyoke Coll
 ### Built With
 * ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 * ![JupyterLab](https://img.shields.io/badge/JupyterLab-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white)
-* [![Python][python.org]][Python-url]
-* [![JupyterLab][https://jupyterlab.readthedocs.io/en/latest/#]][JupyterLab-url]
-* [![Llama.cpp][https://github.com/ggerganov/llama.cpp]][llamacpp-url]
-* [![Streamlit][streamlit.io]][Streamlit-url]
-* [![Next][Next.js]][Next-url]
+* ![Llama.cpp](https://img.shields.io/badge/Llama.cpp-002b36?style=for-the-badge)
+* ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
+  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
