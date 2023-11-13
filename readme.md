@@ -35,7 +35,7 @@ This project is for the llama2 chatbot built specifically for Mount Holyoke Coll
 ## Prerequisite
 
 ### Install Architecture
-If you are using Apple Silicon (M1) Mac, make sure you have installed a version of Python that supports arm64 architecture; Otherwise, while installing it will build the llama.ccp x86 version which will be 10x slower on Apple Silicon (M1) Mac. To install arm64 architecture on your laptop, run the following code on your laptop:
+If you are using Apple Silicon (M1) Mac, make sure you have installed a version of Python that supports arm64 architecture; Otherwise, while installing it will build the llama.ccp x86 version which will be 10x slower on Apple Silicon (M1) Mac. To install arm64 architecture on your laptop, run the following code on your laptop terminal:
 ```zsh
 arm64path = "Miniforge3-MacOSX-arm64.sh"
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh
@@ -48,7 +48,7 @@ bash Miniforge3-MacOSX-arm64.sh
 git clone https://github.com/
 ```
 ### Install essential packages
-To have all the packages needed to run the code, you can run the below code in the terminal with the main program directory:
+To have all the packages needed to run the code, you can run the below code in the **terminal** with the main program directory:
 ```zsh
 pip install -r requirements.txt
 ```
@@ -58,14 +58,14 @@ pip install -r requirements.txt
 The main goal of llama.cpp is to run the LLaMA model using 4-bit integer quantization on a MacBook. The instructions below are for Macs with an **M1 chip**.
 For other operating systems, you can find instructions [here](https://github.com/TrelisResearch/llamacpp-install-basics/blob/main/instructions.md).
 
-Run the below code in a jupyter file (.ipynb) Make sure the current directory should be the main program directory.
+Run the below code in a **jupyter file (.ipynb)**. Make sure the current directory should be the main program directory.
 ```jupyterlab
 git clone https://github.com/ggerganov/llama.cpp
 %cd llama.cpp
 LLAMA_METAL=1 make
 %cd ../
 ```
-Then, after installing llama.cpp, we could require the llama model from huggingface. Run the below code in the jupyter file.
+Then, after installing llama.cpp, we could require the llama model from huggingface. Run the below code in the **jupyter file**.
 ```jupyterlab
 %cd llama.cpp
 model_name = 'TheBloke/Llama-2-7b-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf'
@@ -76,7 +76,7 @@ if not os.path.exists(pure_name):
 ```
 
 Now you have the llama model available to run on your laptop. 
-To test if your installation is successful, you can test with the below code in the terminal:
+To test if your installation is successful, you can test with the below code in the **terminal**:
 ```zsh
 cd llama.cpp
 ./main -m llama-2-7b-chat.Q4_K_M.gguf -c 1024 -ngl 48 -p "Where is new york?"
@@ -104,7 +104,7 @@ To extract text from website, use [collect.py].
 To add dataset, use [learn.py].
 To run chatbot, use [app.py].
 
-Before running app.py, I suggest the following code in the terminal first to avoid the unexpected error.
+**Before running app.py, I suggest the following code in the terminal first to avoid the unexpected error.**
 
 ```zsh
 cd /Users/{username}
