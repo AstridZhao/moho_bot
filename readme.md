@@ -52,6 +52,8 @@ To have all the packages needed to run the code, you can run the below code in t
 ```zsh
 pip install -r requirements.txt
 ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### Install Llama.cpp
 The main goal of llama.cpp is to run the LLaMA model using 4-bit integer quantization on a MacBook. The instructions below are for Macs with an **M1 chip**.
 For other operating systems, you can find instructions [here](https://github.com/TrelisResearch/llamacpp-install-basics/blob/main/instructions.md).
