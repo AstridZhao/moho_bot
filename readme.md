@@ -121,7 +121,12 @@ cd /Users/{username}/.../moho_bot
 python3 learn.py
 ```
 
-then, you can run the chatbot by 
+then, change the directory path to your own path in the first block of code:
+```python
+llamacpp_directory = '/Users/{username}/.../llama.cpp'
+local_directory = '/Users/{username}/...'
+```
+you can run the chatbot by 
 ```zsh
 python3 app.py
 ```
