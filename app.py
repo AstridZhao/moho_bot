@@ -1,4 +1,4 @@
-from langchain.vectorstores import Epsilla
+
 from pyepsilla import vectordb
 from sentence_transformers import SentenceTransformer
 import streamlit as st

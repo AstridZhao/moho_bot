@@ -31,3 +31,4 @@ pypdf
 sentence_transformers
 unstructured
 faiss-cpu
+ipywidgets

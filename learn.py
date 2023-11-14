@@ -11,6 +11,7 @@ from typing import List
 from glob import glob
 from langchain.vectorstores import Epsilla
 from pyepsilla import vectordb
+from langchain.vectorstores import Chroma
 
 # try:
 #     _create_unverified_https_context = ssl._create_unverified_context
@@ -23,10 +24,10 @@ from pyepsilla import vectordb
 
 
 #run in terminal:
-# # # if (os.getcwd() != "/Users/astridz"):
-# # #     os.chdir('/Users/astridz')
-# # # docker pull epsilla/vectordb
-# # # docker run --pull=always -d -p 8888:8888 epsilla/vectordb
+# if (os.getcwd() != "/Users/astridz"):
+#     os.chdir('/Users/astridz')
+# docker pull epsilla/vectordb
+# docker run --pull=always -d -p 8888:8888 epsilla/vectordb
 
 def reading(fileName):
     f = open(fileName, "r")
@@ -59,15 +60,16 @@ for file in files:
     splitted_documents.extend(split_docs)
     # print("splited document:" , len(splitted_documents))
 
-client = vectordb.Client()
+# Testing:
+# client = vectordb.Client()
 
-# Connect to Epsilla as knowledge base.
-vector_store = Epsilla.from_documents(
-    splitted_documents,
-    embeddings,
-    client,
-    db_path="/tmp/localchatdb",
-    db_name="LocalChatDB",
-    collection_name="LocalChatCollection"
-)
+# # Connect to Epsilla as knowledge base.
+# vector_store = Epsilla.from_documents(
+#     splitted_documents,
+#     embeddings,
+#     client,
+#     db_path="/tmp/localchatdb",
+#     db_name="LocalChatDB",
+#     collection_name="LocalChatCollection"
+# )
     
