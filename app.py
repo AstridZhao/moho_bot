@@ -72,33 +72,6 @@ vector_store.use_collection("LocalChatCollection")
 model_name = 'TheBloke/Llama-2-7b-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf'
 pure_name = model_name.split('/')[-1]
 
-# def generate_response(process):
-    # output,error = process.communicate()
-    #     # #reinitialize assistant_response each time
-    #     # if process.poll() is not None and output == '':
-    #     #     print("Subprocess has completed.")
-    #     #     break 
-    # if output:
-    #     print("Subprocess has started.")
-    #     assistant_response = f"{output.strip()}"
-        
-    #     # Ensure that `messages` is initialized in `st.session_state`
-    #     if "messages" not in st.session_state:
-    #         st.session_state["messages"] = []
-            
-    #     if assistant_response:
-    #         msg = { 'role': 'assistant', 'content':assistant_response}
-    #         st.session_state.messages.append(msg)
-            
-    #         # Ensure that Streamlit commands are only called in the main thread
-    #         if threading.current_thread() == threading.main_thread():
-    #             st.chat_message("assistant").write(msg['content'])
-    #         print(f'{assistant_response}\n')
-    # else:
-    #     print(error)
-        
-    # process.stdout.close()
-
 st.set_page_config(page_title="🦙💬 Llama 2 Chatbot with Streamlit")
 
 #Create a Side bar
@@ -108,7 +81,7 @@ with st.sidebar:
     
 # Clear the Chat Messages
 def clear_chat_history():
-    st.session_state.messages=[{"role":"assistant", "content": "How may I assist you today?"}]
+    st.session_state.messages=[{"role":"assistant", "content": "As a helpful question answer assistant, how can I help you today?"}]
     print_dialog()
 # create Clear button
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
@@ -120,14 +93,12 @@ def print_dialog():
             st.write(message["content"])
     
     
-SYSTEM_PROMPT = '''You are a helpful question answer assistant. Answer the user question followed the rules:1. Do not copy the context in your answer. Try to understand the Context and rephrase them. 2. Please don't make things up or say things not mentioned in the Context. 3. You can trust the context. 4. Give a short response! Your answer should be in 200 words. The context is: '''
-# template = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
-
 #store message 
 if "messages" not in st.session_state.keys():
-    st.session_state.messages=[{"role": "assistant", "content": "You are a helpful question answer assistant. How can I help you?"}]
+    st.session_state.messages=[{"role": "assistant", "content": "As a helpful question answer assistant, how can I help you today?"}]
     # st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
-    st.chat_message("assistant").write("I am a helpful question answer assistant. How can I help you?")
+    st.chat_message("assistant").write("As a helpful question answer assistant, how can I help you today?")
+
 
 if question := st.chat_input():
     question = question.strip()
@@ -135,116 +106,63 @@ if question := st.chat_input():
     print_dialog()
     #vector_store.similarity_search
     context = ''.join(map(lambda doc: doc.page_content, vector_store.similarity_search(question, k = 2)))
+    # Split into lines, strip whitespace, filter out empty lines, and join back into a single string
+    clean_context = '\n'.join([line.strip() for line in context.splitlines() if line.strip()])
     
-    #Testing:
-    prompt_template = f'''<s>[INST]<<SYS>>\n{SYSTEM_PROMPT}{context}\n<</SYS>>\n\n{question}[/INST]'''
-    # prompt_template = f'''{SYSTEM_PROMPT}{context} The user question is: {question}'''
+    SYSTEM_PROMPT =f'''As a helpful question answer assistant, answer the user question by giving response and follow the rules: \
+    1. Do not copy the context in your answer. Try to understand the context and rephrase them. \
+    2. Please don't make things up or say things not mentioned in the Context. \
+    3. You can trust the context. \
+    The context is: {clean_context}'''
+    # prompt_template = f'''[INST]<<SYS>>\n{SYSTEM_PROMPT}{context}\n<</SYS>>\n\n{question}[/INST]'''
+    # prompt_template = f'''[INST]<<SYS>>\n{SYSTEM_PROMPT}{context}\n<</SYS>>\n\n{question}[/INST]'''
+    B_INST, E_INST = "[INST]", "[/INST]"
+    B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
+    SYSTEM_PROMPT = B_SYS + SYSTEM_PROMPT + E_SYS
+    prompt_template = B_INST + SYSTEM_PROMPT + question + E_INST
 
     # Start the subprocess and the threading to handle its output
     if (os.getcwd() != '/Users/astridz/Documents/llama.cpp'):
         os.chdir('/Users/astridz/Documents/llama.cpp')
-
-    # prompt_template = f'''<s>[INST]<<SYS>>\n
-    # {SYSTEM_PROMPT}{context}\n
-    # <</SYS>>\n\n
-    # {question}[/INST]'''
     
     # prompt_template = f'''./main -m llama-2-7b-chat.Q4_K_M.gguf -c 1024 --verbose-prompt --keep 0 -b 16 -ngl 48 --prompt '{SYSTEM_PROMPT}{context} USER: {question}' --in-suffix 'ASSISTANT:' '''
     
     # ./main -m llama-2-7b-chat.Q4_K_M.gguf -c 1024 --verbose-prompt --keep 0 -b 16 -ngl 48 -p
     pure_name = "llama-2-7b-chat.Q4_K_M.gguf"
-    command = ['./main', '-m', pure_name, '-c', '2048', '--keep', '0', '-b', '1024', '-ngl', '48', '-p', prompt_template]
+    print(prompt_template)
+    command = ['./main', '-m', pure_name, '-c', '1024', '--multiline-input', '-ngl', '8', '-p', prompt_template]
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,text=True)
     start_time = time.time()
-    output = process.stdout.read()
-    marker_index = output.find("[/INST]")
-    prompt_tokens = []
-
-    if marker_index != -1:
-        assistant_response = output[marker_index + len("[/INST]"):] 
-        st.session_state.messages.append([{"role":"assistant", "content": f'''{assistant_response}'''}] )
-        st.chat_message("assistant").write(assistant_response)
-    # else:
-    #     st.session_state.messages.append([{"role":"assistant", "content": f'''{output}</s><s>[INST]'''}] )
-    #     st.chat_message("assistant").write(output)
+    while True:
+        if process.poll() is not None:
+            break  # Break the loop if the subprocess has finished
         
-    # while True:
-    #     output = process.stdout.readline()
-        # print(output)
-    #     if process.poll() is not None and output == '':
-    #         print("Subprocess has completed.")
-    #         break 
-    #     if 'You are a helpful question answer' in output:
-    #         continue
-    # assistant_response = f"{output.strip()}"
-    # st.session_state.messages.append([{"role":"assistant", "content": f'''{assistant_response}'''}] )
-    # st.chat_message("assistant").write(assistant_response)
+        output = process.stdout.readline()
+        assistant_response = ""
+        if output:
+            if '[/INST]' in output:
+                inst_index = output.find('[/INST]')
+                # Check if [/INST] is found in the text
+                if inst_index != -1:
+                    # Print everything after [/INST]
+                    assistant_response = output[inst_index + len('[/INST]'):].strip()
+                    st.session_state.messages.append({"role" : "assistant", "content": f'''{assistant_response}</s><s>[INST]'''})
+                    st.chat_message("assistant").write(assistant_response)
+            elif '<</SYS>>' in output or '[INST]' in output:
+                continue
+            elif  'As a helpful question answer assistant, ' in output:
+                st.chat_message("assistant").write("processing...")
+            else:
+                assistant_response = output.strip()
+                if assistant_response == "":
+                    continue
+                else:
+                    st.session_state.messages.append({"role":"assistant", "content": f'''{assistant_response}</s><s>[INST]'''})
+                    st.chat_message("assistant").write(assistant_response)
     
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    print("total time :",  elapsed_time)
-
-    # # Function to read from a stream and put the output in a queue
-    # def enqueue_output(stream, queue):
-    #     output = iter(stream.read, b'')
-    #     queue.put(output)
-    #     stream.close()
-    
-    # # Create queues to hold the output
-    # stdout_queue = queue.Queue()
-    # stdout_thread = threading.Thread(target=enqueue_output, args=(process.stdout, stdout_queue))
-    # stdout_thread.start()
-    
-    # # Read from the queues
-    # while True:
-    #     try:
-    #         # Try to get output from the queues
-    #         stdout_line = stdout_queue.get_nowait()
-    #         print(stdout_line)
-    #         st.session_state.messages.append([{"role":"assistant", "content": stdout_line}])
-    #         st.chat_message("assistant").write(stdout_line)
-    #                 # output = process.stdout.read()
-            
-    #     except queue.Empty:
-    #     # No output ready
-    #         pass
-
-    # # Process the output here
-
-    #     # Check if the subprocess is still running
-    #     if process.poll() is not None:
-    #         break
-
-    # # Make sure threads have finished
-    # stdout_thread.join()
-
-    # process.stdout.close()
+        # end_time = time.time()
+        # elapsed_time = end_time - start_time
+        # print("total time :",  elapsed_time)
         
-    # end_time = time.time()
-    # elapsed_time = end_time - start_time
-    # print("total time :",  elapsed_time)
+        # process.stdout.close()
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    # # # Start the thread that will handle the subprocess output
-    # output_thread = threading.Thread(target=generate_response, args=(process, output_log))
-    # output_thread.start()
-    # # Wait for the subprocess and thread to finish
-    # process.wait()
-    # output_thread.join()
-    # os.chdir(local_directory)
-    
-    # placeholder=st.empty()
-    # full_response=''
-    

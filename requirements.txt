@@ -7,13 +7,12 @@ requests
 setuptools
 types-dataclasses
 typing-extensions
-sympy
-filelock
-networkx
+
 setuptools ; python_version >= "3.12"
 packaging
 accelerate
 transformers
+ctransformers
 bs4
 sentence-transformers
 nltk
@@ -21,14 +20,13 @@ docker
 langchain 
 pyepsilla
 streamlit
-bitsandbytes 
 accelerate 
-transformers
 datasets 
 loralib 
 sentencepiece
-pypdf
+PyPDF2
 sentence_transformers
 unstructured
 faiss-cpu
 ipywidgets
+decouple

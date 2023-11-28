@@ -78,7 +78,7 @@ def text_from_html(body):
     soup = BeautifulSoup(body, 'html.parser')
     texts = soup.findAll(string=True)
     visible_texts = filter(tag_visible, texts)  
-    return u" ".join(t.strip() for t in visible_texts)
+    return u"".join(t.strip() for t in visible_texts)
 
 URLs = reading("URL.txt")
 URLList = URLs.split()
@@ -89,8 +89,7 @@ for link in URLList:
     pure_name = link.split('/')[-1]
     html = urllib.request.urlopen(link).read()
     document = text_from_html(html)
-    document_tokenize = " ".join(nltk.sent_tokenize(document))
-    
+    document_tokenize = "".join(nltk.sent_tokenize(document))
     writing(document_tokenize, f"{pure_name}.txt")
 
 
