@@ -70,7 +70,7 @@ Then, after installing llama.cpp, we can require the specific llama model from h
 ```zsh
 cd llama.cpp
 wget https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf
-%cd ../
+cd ..
 ```
 
 Now you have the llama model available to run on your laptop. 
@@ -103,33 +103,45 @@ docker run --pull=always -d -p 8888:8888 epsilla/vectordb
 
 ## Program function
 
-* To extract text from website, use [collect.py].
+To run this program project, you need to do FOUR steps: 
+
+* 1. Initiate Docker with the command
+     
+     ```zsh
+      cd /Users/{your username}
+      open -a Docker
+      docker pull epsilla/vectordb
+      docker run --pull=always -d -p 8888:8888 epsilla/vectordb
+    ```
+and then return back to the program directory.
   
-* To add dataset, use [learn.py].
+* 2. To extract text from the Mount Holyoke College website, run [collect.py].
+     You can find or edit the website link in "URL.txt" file in the folder.
+
+      ```zsh
+     python3 collect.py
+     ```
+     
+* 3. To train the dataset, run [learn.py] by using command
+     
+     ```zsh
+     python3 learn.py
+     ```
   
-* To run chatbot, use [app.py].
+* 4. To run the chatbot, run [app.py] by using command
 
-**Before running app.py, I suggest you run the following code in the terminal to avoid unexpected errors.**
+     ```zsh
+     streamlit run app.py
+     ```
 
-```zsh
-cd /Users/{username}
-open -a Docker
-docker pull epsilla/vectordb
-docker run --pull=always -d -p 8888:8888 epsilla/vectordb
-cd /Users/{username}/.../moho_bot
-python3 learn.py
-```
-
-then, change the directory path to your own path in the first block of code:
-```python
-llamacpp_directory = '/Users/{username}/.../llama.cpp'
-local_directory = '/Users/{username}/...'
-```
-you can run the chatbot by 
-```zsh
-python3 app.py
-```
+**I suggest you run the program following the above sequence to avoid unexpected errors.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- USAGE -->
+
+## Chatbot Interface
+
+After running the app.py, the streamlit will bring you to the chatbot interface.
 
 
