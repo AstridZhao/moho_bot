@@ -145,3 +145,7 @@ and then return back to the program directory.
 After running the app.py, the streamlit will bring you to the chatbot interface.
 
 
+
+https://github.com/AstridZhao/moho_bot/assets/79214456/5bde6326-8039-458f-9949-a4c0ad573064
+
+
