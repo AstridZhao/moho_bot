@@ -60,16 +60,3 @@ for file in files:
     splitted_documents.extend(split_docs)
     # print("splited document:" , len(splitted_documents))
 
-# Testing:
-# client = vectordb.Client()
-
-# # Connect to Epsilla as knowledge base.
-# vector_store = Epsilla.from_documents(
-#     splitted_documents,
-#     embeddings,
-#     client,
-#     db_path="/tmp/localchatdb",
-#     db_name="LocalChatDB",
-#     collection_name="LocalChatCollection"
-# )
-    
