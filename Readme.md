@@ -100,7 +100,7 @@ docker run --pull=always -d -p 8888:8888 epsilla/vectordb
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE -->
-## Program function
+## Program Initiation
 
 To run this program project, you need to do FOUR steps: 
 
@@ -136,8 +136,6 @@ and then return back to the program directory.
 **I suggest you run the program following the above sequence to avoid unexpected errors.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- USAGE -->
 
 ## Chatbot Interface
 
