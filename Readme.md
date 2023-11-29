@@ -100,7 +100,6 @@ docker run --pull=always -d -p 8888:8888 epsilla/vectordb
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE -->
-
 ## Program function
 
 To run this program project, you need to do FOUR steps: 
