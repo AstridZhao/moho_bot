@@ -46,7 +46,7 @@ bash Miniforge3-MacOSX-arm64.sh
 ## Installation
 ### Clone the repo
 ```sh
-git clone https://github.com/
+git clone [https://github.com/](https://github.com/AstridZhao/moho_bot.git)
 ```
 ### Install essential packages
 To have all the packages needed to run the code, you can run the below code in the **terminal** with the main program directory:
@@ -59,20 +59,17 @@ pip install -r requirements.txt
 The main goal of llama.cpp is to run the LLaMA model using 4-bit integer quantization on a MacBook. The instructions below are for Macs with an **M1 chip**.
 For other operating systems, you can find instructions [here](https://github.com/TrelisResearch/llamacpp-install-basics/blob/main/instructions.md).
 
-Run the below code in a **jupyter file (.ipynb)**. Make sure the current directory should be the main program directory.
-```jupyterlab
+Run the below code in **terminal**. Make sure the current directory should be the main program directory.
+```terminal
 git clone https://github.com/ggerganov/llama.cpp
-%cd llama.cpp
+cd llama.cpp
 LLAMA_METAL=1 make
-%cd ../
+cd ..
 ```
-Then, after installing llama.cpp, we could require the llama model from huggingface. Run the below code in the **jupyter file**.
-```jupyterlab
-%cd llama.cpp
-model_name = 'TheBloke/Llama-2-7b-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf'
-pure_name = model_name.split('/')[-1]
-if not os.path.exists(pure_name):
-    !wget https://huggingface.co/{model_name}
+Then, after installing llama.cpp, we can require the specific llama model from huggingface. In this project, we chose to use  "llama-2-7b-chat.Q4_K_M.gguf". Run the below code in the **terminal**.
+```terminal
+cd llama.cpp
+wget https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf
 %cd ../
 ```
 
