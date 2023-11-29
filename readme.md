@@ -45,7 +45,7 @@ bash Miniforge3-MacOSX-arm64.sh
 
 ## Installation
 ### Clone the repo
-```sh
+```zsh
 git clone [https://github.com/](https://github.com/AstridZhao/moho_bot.git)
 ```
 ### Install essential packages
@@ -60,37 +60,39 @@ The main goal of llama.cpp is to run the LLaMA model using 4-bit integer quantiz
 For other operating systems, you can find instructions [here](https://github.com/TrelisResearch/llamacpp-install-basics/blob/main/instructions.md).
 
 Run the below code in **terminal**. Make sure the current directory should be the main program directory.
-```terminal
+```zsh
 git clone https://github.com/ggerganov/llama.cpp
 cd llama.cpp
 LLAMA_METAL=1 make
 cd ..
 ```
 Then, after installing llama.cpp, we can require the specific llama model from huggingface. In this project, we chose to use  "llama-2-7b-chat.Q4_K_M.gguf". Run the below code in the **terminal**.
-```terminal
+```zsh
 cd llama.cpp
 wget https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf
 %cd ../
 ```
 
 Now you have the llama model available to run on your laptop. 
-To test if your installation is successful, you can test with the below code in the **terminal**:
+To test if your installation is successful, you can do it with the below code in the **terminal**:
 ```zsh
 cd llama.cpp
-./main -m llama-2-7b-chat.Q4_K_M.gguf -c 1024 -ngl 48 -p "Where is new york?"
+./main -m llama-2-7b-chat.Q4_K_M.gguf -c 1024 -ngl 8 -p "Where is new york?"
 ```
 
 ### Install Docker Desktop
 
-Docker Desktop is a one-click-install application for your Mac, Linux, or Windows environment that lets you to build, share, and run containerized applications and microservices. Docker packages software into standardized units called containers that have everything the software needs to run including libraries, system tools, code, and runtime.
+In this project, we need to use the vector database (epsilla/vectordb), which could be pulled by docker.
 
-You find the link to install docker [here](https://docs.docker.com/desktop/install/mac-install/).
-I suggest to install docker to "/Users/{username}" directory.
+Docker Desktop is a one-click-install application for your Mac, Linux, or Windows environment that lets you build, share, and run containerized applications and microservices. Docker packages software into standardized units called containers that have everything the software needs to run including libraries, system tools, code, and runtime.
 
-After installing, you can run below code in your terminal before run the program code lately.
+You find the more detailed install instructions of docker [here](https://docs.docker.com/desktop/install/mac-install/).
+I suggest you install the docker in the "/Users/{your username}" directory.
+
+After installing successfully, you need to run the below code in **terminal** before initiating the program code each time.
 
 ```zsh
-cd /Users/{username}
+cd /Users/{your username}
 open -a Docker
 docker pull epsilla/vectordb
 docker run --pull=always -d -p 8888:8888 epsilla/vectordb
