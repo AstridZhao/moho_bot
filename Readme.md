@@ -89,7 +89,7 @@ In this project, we need to use the vector database (epsilla/vectordb), which co
 
 Docker Desktop is a one-click-install application for your Mac, Linux, or Windows environment that lets you build, share, and run containerized applications and microservices. Docker packages software into standardized units called containers that have everything the software needs to run including libraries, system tools, code, and runtime.
 
-You find the more detailed install instructions of docker [here](https://docs.docker.com/desktop/install/mac-install/).
+You can find the more detailed install instructions about Docker [here](https://docs.docker.com/desktop/install/mac-install/).
 I suggest you install the docker in the "/Users/{your username}" directory.
 
 After installing successfully, you need to run the below code in **terminal** before initiating the program code each time.
