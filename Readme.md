@@ -114,29 +114,29 @@ To run this program project, you need to do FOUR steps:
       open -a Docker
       docker pull epsilla/vectordb
       docker run --pull=always -d -p 8888:8888 epsilla/vectordb
-    ```
+       ```
 and then return back to the program directory.
   
-* 2. To extract text from the Mount Holyoke College website, run [collect.py].
-     You can find or edit the website link in "URL.txt" file in the folder.
+* 2. To extract text from the Mount Holyoke College website, run **collect.py**.
+     You are welcome to read or edit those website links in the "URL.txt" file.
 
       ```zsh
      python3 collect.py
      ```
      
-* 3. To train the dataset, run [learn.py] by using command
+* 3. To train the dataset, run **learn.py** by using the command
      
      ```zsh
      python3 learn.py
      ```
   
-* 4. To run the chatbot, run [app.py] by using command
+* 4. To run the chatbot, run **app.py** by using the command
 
      ```zsh
      streamlit run app.py
      ```
 
-**I suggest you run the program following the above sequence to avoid unexpected errors.**
+**I suggest you run the program by following the above order to avoid unexpected errors.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
