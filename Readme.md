@@ -49,7 +49,7 @@ bash Miniforge3-MacOSX-arm64.sh
 ## Installation
 ### Clone the repo
 ```zsh
-git clone [https://github.com/](https://github.com/AstridZhao/moho_bot.git)
+git clone https://github.com/AstridZhao/moho_bot.git
 ```
 ### Install essential packages
 To have all the packages needed to run the code, you can run the below code in the **terminal** with the main program directory:
